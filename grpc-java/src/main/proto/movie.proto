@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+option java_package = "io.gprc.playground.model";
+option java_outer_classname = "MovieModel";
+
+option go_package = "src/model";
+
+package movie;
+
+service Movie {
+  rpc SaveNewMovie (MovieItem) returns (AddMovieResponse) {}
+  rpc FetchExistingMovie (FetchMovieRequest) returns (MovieItem) {}
+}
+
+message MovieItem {
+  string name = 1;
+  double price = 2;
+  bool inStock = 3;
+}
+
+message AddMovieResponse {
+  bool wasSaved = 1;
+  int32 itemId = 2;
+}
+
+message FetchMovieRequest {
+  string name = 1;
+}
